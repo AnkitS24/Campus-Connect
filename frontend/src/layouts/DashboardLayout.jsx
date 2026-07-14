@@ -19,7 +19,6 @@ import {
   User,
   Code2,
   Share2,
-  ShieldUser
 } from 'lucide-react';
 
 const navItems = [
@@ -30,8 +29,8 @@ const navItems = [
   { to: '/resume-review', icon: FileText, label: 'Resume Review' },
   { to: '/mock-interviews', icon: Calendar, label: 'Mock Interviews' },
   { to: '/experiences', icon: Users, label: 'Experiences' },
-  { to: '/contests', icon: Code2, label: 'Contests' },
-  { to: '/leaderboard', icon: Trophy, label: 'Leaderboard' }
+  { to: '/practice', icon: Code2, label: 'Practice Problems' },
+ 
 ];
 
 const DashboardLayout = () => {
@@ -82,22 +81,6 @@ const DashboardLayout = () => {
               </NavLink>
             ))}
 
-            {user?.role !== "student" && <NavLink
-                key={'/admin'}
-                to={'/admin'}
-                onClick={() => setSidebarOpen(false)}
-                className={({ isActive }) =>
-                  `flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200
-                  ${
-                    isActive
-                      ? 'bg-primary/10 text-primary border border-primary/20'
-                      : 'text-text-muted hover:text-text hover:bg-surface-lighter'
-                  }`
-                }
-              >
-                <ShieldUser size={20} />
-                {'Admin'}
-              </NavLink> }
           </nav>
 
           <div className="p-4 border-t border-border">

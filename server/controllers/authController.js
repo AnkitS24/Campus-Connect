@@ -1,11 +1,13 @@
 const crypto = require('crypto');
 const { validationResult } = require('express-validator');
 const User = require('../models/User');
+
 const {
   generateAccessToken,
   generateRefreshToken,
   verifyRefreshToken,
 } = require('../utils/generateToken');
+
 const asyncHandler = require('../utils/asyncHandler');
 const ApiResponse = require('../utils/ApiResponse');
 const { sendEmail } = require('../utils/email');

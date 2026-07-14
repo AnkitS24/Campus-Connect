@@ -14,11 +14,11 @@ export default defineConfig({
     port: 5173,
     proxy: {
       '/api': {
-        target: env.VITE_API_URL,
+        target: 'http://localhost:5000',
         changeOrigin: true,
       },
       '/socket.io': {
-        target: env.VITE_API_URL,
+        target: 'http://localhost:5000',
         ws: true,
       },
     },

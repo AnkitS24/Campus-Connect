@@ -1,6 +1,6 @@
 const rateLimit = new Map();
 
-const rateLimiter = (limit = 200, windowMs = 15 * 60 * 1000) => {
+const rateLimiter = (limit = 2000, windowMs = 15 * 60 * 1000) => {
   return (req, res, next) => {
     const ip = req.ip || req.connection.remoteAddress;
     const now = Date.now();

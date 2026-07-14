@@ -121,4 +121,20 @@ export const interviewAPI = {
   submitFeedback: (id, data) => api.post(`/interviews/${id}/feedback`, data),
 };
 
+export const problemAPI = {
+  getProblems: (params) => api.get('/problems', { params }),
+  getProblem: (id) => api.get(`/problems/${id}`),
+  createProblem: (data) => api.post('/problems', data),
+  updateProblem: (id, data) => api.put(`/problems/${id}`, data),
+  deleteProblem: (id) => api.delete(`/problems/${id}`),
+};
+
+export const submissionAPI = {
+  createSubmission: (data) => api.post('/submissions/submit', data),
+  getSubmissions: (params) => api.get('/submissions', { params }),
+  getSubmission: (id) => api.get(`/submissions/${id}`),
+  runCode: (data) => api.post('/submissions/run', data),
+};
+
+
 export default api;

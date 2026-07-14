@@ -32,6 +32,9 @@ const mockInterviewSchema = new mongoose.Schema(
       enum: ['pending', 'scheduled', 'completed', 'cancelled'],
       default: 'pending',
     },
+    reminderSent : {
+      type : Boolean, 
+      default : false},
     notes: {
       type: String,
       maxlength: 1000,

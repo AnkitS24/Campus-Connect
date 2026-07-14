@@ -44,7 +44,9 @@ const Placements = () => {
     try {
       const { data } = await placementAPI.getPlacements({ limit: 50 });
       setPlacements(data.data?.placements || []);
-    } catch {} finally {
+    } catch(error) {
+      console.error("Error fetching placements:", error);
+    } finally {
       setLoading(false);
     }
   };

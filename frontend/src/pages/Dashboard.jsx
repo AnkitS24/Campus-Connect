@@ -12,8 +12,11 @@ import {
   Users,
   ArrowRight,
   Bell,
+  Coins,
   Clock,
   TrendingUp,
+  Currency,
+  CurlyBraces,
 } from 'lucide-react';
 import { placementAPI } from '../services/api';
 
@@ -23,12 +26,14 @@ const quickActions = [
   { to: '/ai-mentor', icon: Bot, label: 'AI Mentor', color: 'from-accent to-orange-500', desc: 'Get guidance' },
   { to: '/resume-review', icon: FileText, label: 'Resume Review', color: 'from-pink-500 to-rose-500', desc: 'Optimize resume' },
   { to: '/mock-interviews', icon: Calendar, label: 'Mock Interviews', color: 'from-green-500 to-emerald-500', desc: 'Practice now' },
-  { to: '/contests', icon: Trophy, label: 'Contests', color: 'from-violet-500 to-purple-500', desc: 'Compete & learn' },
+  { to: '/practice', icon: Trophy, label: 'Practice Problems', color: 'from-violet-500 to-purple-500', desc: 'Solve coding challenges' },
 ];
+const now = new Date();
 
 const Dashboard = () => {
   const { user } = useAuthStore();
   const [placements, setPlacements] = useState([]);
+  const [recent, setRecent] = useState([]);
 
   useEffect(() => {
     placementAPI.getPlacements({ limit: 5, status: 'upcoming' })
@@ -52,7 +57,7 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {[
           { icon: Bell, label: 'New Placements', value: placements.length, color: 'text-secondary' },
-          { icon: Users, label: 'Community Members', value: '8', color: 'text-primary' },
+          { icon: Coins, label: 'Your Points', value: '8', color: 'text-primary' },
           { icon: TrendingUp, label: 'Your Rank', value: '#4', color: 'text-accent' },
         ].map((stat) => (
           <div key={stat.label} className="glass rounded-xl p-4 flex items-center gap-4">
@@ -98,7 +103,15 @@ const Dashboard = () => {
             {placements.length === 0 ? (
               <p className="text-text-muted text-sm">No upcoming placements</p>
             ) : (
-              placements.slice(0, 4).map((p) => (
+              placements.slice(0, 4).map((p) => { 
+                const curr = new Date(now);
+                curr.setHours(0,0,0,0);           
+                
+                const deadline = new Date(p.applicationDeadline);
+                deadline.setHours(0,0,0,0);
+                
+                if(deadline >= curr){
+                return (
                 <div key={p._id} className="flex items-center justify-between p-3 rounded-lg bg-surface-lighter/50">
                   <div>
                     <p className="font-medium text-sm">{p.companyName}</p>
@@ -106,10 +119,10 @@ const Dashboard = () => {
                   </div>
                   <div className="flex items-center gap-2 text-xs text-text-muted">
                     <Clock size={12} />
-                    {new Date(p.driveDate).toLocaleDateString()}
+                    {new Date(p.applicationStart).toLocaleDateString()}
                   </div>
                 </div>
-              ))
+                )}})
             )}
           </div>
         </div>

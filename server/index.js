@@ -48,10 +48,10 @@ app.use('/api/placements', require('./routes/placementRoutes'));
 app.use('/api/ai', require('./routes/aiRoutes'));
 app.use('/api/interviews', require('./routes/interviewRoutes'));
 app.use('/api/experiences', require('./routes/experienceRoutes'));
-app.use('/api/contests', require('./routes/contestRoutes'));
-app.use('/api/leaderboard', require('./routes/leaderboardRoutes'));
-app.use('/api/referrals', require('./routes/referralRoutes'));
+app.use('/api/problems', require('./routes/problemRoutes'));
+app.use('/api/submissions', require('./routes/submissionRoutes'));
 
+ 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });

@@ -2,9 +2,9 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import useAuthStore from './store/authStore';
-import AuthLayout from './layouts/AuthLayout';
 import DashboardLayout from './layouts/DashboardLayout';
 
+import AuthLayout from './layouts/AuthLayout';
 import Landing from './pages/Landing';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -18,9 +18,8 @@ import ResumeReview from './pages/ResumeReview';
 import MockInterviews from './pages/MockInterviews';
 import Profile from './pages/Profile';
 import Experiences from './pages/Experiences';
-import Contests from './pages/Contests';
-import LeaderboardPage from './pages/LeaderboardPage';
-import Admin from './pages/Admin';
+import Practice from './pages/Practice';
+import CodeEditor from './pages/CodeEditor';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -55,11 +54,9 @@ const App = () => {
             <Route path="/mock-interviews" element={<MockInterviews />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/experiences" element={<Experiences />} />
-            <Route path="/contests" element={<Contests />} />
-            <Route path="/leaderboard" element={<LeaderboardPage />} />
-            <Route path="/admin" element={<Admin />} />
+            <Route path="/practice" element={<Practice />} />
           </Route>
-
+          <Route path="/codeEditor" element={<CodeEditor />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
